@@ -1,16 +1,15 @@
 import io
 import json
 import os.path
-from uuid import uuid4
 
 import numpy as np
 from BunnyCDN.Storage import Storage
 from PIL import Image
 
 
-def save_file(client: Storage, local_filepath):
+def save_file(client: Storage, pathname: str, local_filepath: str):
     filename = os.path.basename(local_filepath)
-    client.PutFile(filename, uuid4(), local_filepath)
+    client.PutFile(filename, pathname, local_filepath)
 
 
 def init_client(api_key: str, storage_zone: str, storage_zone_region: str = 'la'):
