@@ -7,9 +7,7 @@ from PIL import Image
 
 
 def save_file(client: Storage, pathname: str, local_filepath: str):
-    filename = os.path.basename(pathname)
-    filepath = os.path.dirname(local_filepath)
-    res = client.PutFile(filename, pathname, filepath)
+    res = client.PutFile(os.path.basename(local_filepath), pathname, os.path.dirname(local_filepath))
     print("Res: ", res)
     return "https://hyax.cdn-b.net/%s" % pathname
 
