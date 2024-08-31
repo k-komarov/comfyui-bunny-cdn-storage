@@ -7,7 +7,8 @@ from PIL import Image
 
 
 def save_file(client: Storage, pathname: str, local_filepath: str):
-    client.PutFile(os.path.basename(local_filepath), pathname, os.path.dirname(local_filepath))
+    result = client.PutFile(os.path.basename(local_filepath), pathname, os.path.dirname(local_filepath))
+    print("Result:", result)
 
 
 def init_client(api_key: str, storage_zone: str, storage_zone_region: str = 'la'):
@@ -42,8 +43,9 @@ class SaveImageToBunnyStorage:
             img = Image.fromarray(np.clip(i, 0, 255).astype(np.uint8))
             with tempfile.NamedTemporaryFile(suffix='.png', dir='/tmp') as tmp:
                 img.save(tmp, format='PNG')
-                save_file(client, "%s/%i.png" % (pathname, batch_number), tmp.name)
-                url = "https://%s.b-cdn.net/%s" % (storage_zone, pathname)
+                filename = "%s/%i.png" % (pathname, batch_number)
+                save_file(client, filename, tmp.name)
+                url = "https://%s.b-cdn.net/%s" % (storage_zone, filename)
 
             results.append({
                 "url": url,
