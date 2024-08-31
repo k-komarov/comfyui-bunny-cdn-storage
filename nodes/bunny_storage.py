@@ -50,4 +50,5 @@ class SaveImageToBunnyStorage:
                 "subfolder": "",
                 "type": "output"
             })
+        print(results)
         return {"ui": {"images": results}}
