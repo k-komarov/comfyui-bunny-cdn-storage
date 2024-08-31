@@ -38,16 +38,16 @@ class SaveImageToBunnyStorage:
         client = init_client(api_key, storage_zone, storage_zone_region)
         results = list()
         print(f"Saving to BunnyStorage...")
-        print(json.dumps(images))
-        # for (batch_number, image) in enumerate(images):
-        #     i = 255. * image.cpu().numpy()
-        #     img = Image.fromarray(np.clip(i, 0, 255).astype(np.uint8))
-        #     img_byte_arr = io.BytesIO()
-        #     img.save(img_byte_arr, format='PNG')
-        #     save_file(client, "%s_%i.png" % (pathname, batch_number))
-        #     results.append({
-        #         "filename": "%s_%i.png" % (pathname, batch_number),
-        #         "subfolder": "",
-        #         "type": "output"
-        #     })
+
+        for (batch_number, image) in enumerate(images):
+            i = 255. * image.cpu().numpy()
+            #img = Image.fromarray(np.clip(i, 0, 255).astype(np.uint8))
+            #img_byte_arr = io.BytesIO()
+            #img.save(img_byte_arr, format='PNG')
+            #save_file(client, "%s_%i.png" % (pathname, batch_number))
+            results.append({
+                "filename": "%s_%i.png" % (pathname, batch_number),
+                "subfolder": "",
+                "type": "output"
+            })
         return {"ui": {"images": results}}
