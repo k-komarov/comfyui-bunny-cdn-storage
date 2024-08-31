@@ -41,9 +41,9 @@ class SaveImageToBunnyStorage:
 
         for (batch_number, image) in enumerate(images):
             i = 255. * image.cpu().numpy()
-            #img = Image.fromarray(np.clip(i, 0, 255).astype(np.uint8))
-            #img_byte_arr = io.BytesIO()
-            #img.save(img_byte_arr, format='PNG')
+            img = Image.fromarray(np.clip(i, 0, 255).astype(np.uint8))
+            img_byte_arr = io.BytesIO()
+            img.save(img_byte_arr, format='PNG')
             #save_file(client, "%s_%i.png" % (pathname, batch_number))
             results.append({
                 "filename": "%s_%i.png" % (pathname, batch_number),
