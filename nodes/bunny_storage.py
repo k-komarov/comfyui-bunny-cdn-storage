@@ -39,7 +39,7 @@ class SaveImageToBunnyStorage:
         client = init_client(api_key, storage_zone, storage_zone_region)
         results = list()
         print(f"Saving to BunnyStorage...")
-        print(json.dump(images))
+        print(json.dumps(images))
         # for (batch_number, image) in enumerate(images):
         #     i = 255. * image.cpu().numpy()
         #     img = Image.fromarray(np.clip(i, 0, 255).astype(np.uint8))
