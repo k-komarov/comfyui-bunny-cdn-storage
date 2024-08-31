@@ -1,5 +1,3 @@
-import io
-import json
 import os.path
 import tempfile
 
@@ -12,7 +10,9 @@ def save_file(client: Storage, pathname: str, local_filepath: str):
     filename = os.path.basename(local_filepath)
     filepath = os.path.dirname(local_filepath)
     client.PutFile(filename, pathname, filepath)
+    print("Base url: %s" % client.base_url)
     return "https://hyax.cdn-b.net/%s/%s" % (pathname, filepath)
+
 
 def init_client(api_key: str, storage_zone: str, storage_zone_region: str = 'la'):
     return Storage(api_key, storage_zone, storage_zone_region)
