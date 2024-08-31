@@ -44,7 +44,7 @@ class SaveImageToBunnyStorage:
             img = Image.fromarray(np.clip(i, 0, 255).astype(np.uint8))
             with tempfile.NamedTemporaryFile(suffix='.png', dir='/tmp') as tmp:
                 img.save(tmp, format='PNG')
-                filename = "%s/%i.png" % (pathname, uuid.uuid4().hex)
+                filename = "%s/%s.png" % (pathname, uuid.uuid4().hex)
                 save_file(client, filename, tmp.name)
                 url = "https://%s.b-cdn.net/%s" % (storage_zone, filename)
 
