@@ -12,7 +12,7 @@ def save_file(client: Storage, pathname: str, local_filepath: str):
     filename = os.path.basename(local_filepath)
     filepath = os.path.dirname(local_filepath)
     client.PutFile(filename, pathname, filepath)
-
+    return "https://hyax.cdn-b.net/%s/%s" % pathname, filepath
 
 def init_client(api_key: str, storage_zone: str, storage_zone_region: str = 'la'):
     return Storage(api_key, storage_zone, storage_zone_region)
@@ -46,12 +46,11 @@ class SaveImageToBunnyStorage:
             img = Image.fromarray(np.clip(i, 0, 255).astype(np.uint8))
             with tempfile.NamedTemporaryFile(suffix='.png', dir='/tmp') as tmp:
                 img.save(tmp, format='PNG')
-                save_file(client, "%s/%i.png" % (pathname, batch_number), tmp.name)
+                url = save_file(client, "%s/%i.png" % (pathname, batch_number), tmp.name)
 
             results.append({
-                "filename": "%s_%i.png" % (pathname, batch_number),
-                "subfolder": "",
-                "type": "output"
+                "url": url,
+                "type": "bunny"
             })
         print(results)
         return {"ui": {"images": results}}
