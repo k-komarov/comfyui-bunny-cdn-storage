@@ -7,11 +7,11 @@ from PIL import Image
 
 
 def save_file(client: Storage, pathname: str, local_filepath: str):
-    filename = os.path.basename(local_filepath)
+    filename = os.path.basename(pathname)
     filepath = os.path.dirname(local_filepath)
-    client.PutFile(filename, pathname, filepath)
-    print("Base url: %s" % client.base_url)
-    return "https://hyax.cdn-b.net/%s/%s" % (pathname, filename)
+    res = client.PutFile(filename, pathname, filepath)
+    print("Res: ", res)
+    return "https://hyax.cdn-b.net/%s" % pathname
 
 
 def init_client(api_key: str, storage_zone: str, storage_zone_region: str = 'la'):
