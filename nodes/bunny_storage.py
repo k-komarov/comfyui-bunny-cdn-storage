@@ -43,7 +43,7 @@ class SaveImageToBunnyStorage:
             with tempfile.NamedTemporaryFile(suffix='.png', dir='/tmp') as tmp:
                 img.save(tmp, format='PNG')
                 save_file(client, "%s/%i.png" % (pathname, batch_number), tmp.name)
-                url = "https://%s.cdn-b.net/%s" % (storage_zone, pathname)
+                url = "https://%s.b-cdn.net/%s" % (storage_zone, pathname)
 
             results.append({
                 "url": url,
