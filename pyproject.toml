@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-bunny-cdn-storage"
+description = " Save Your Image to BunnyStorage"
+version = "1.0.0"
+license = {file = "LICENSE"}
+dependencies = ["pillow", "bunnycdnpython", "numpy"]
+
+[project.urls]
+Repository = "https://github.com/k-komarov/comfyui-bunny-cdn-storage"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "comfyui-bunny-cdn-storage"
+Icon = ""
